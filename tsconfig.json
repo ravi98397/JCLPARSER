@@ -1,0 +1,13 @@
+{
+  "extends": "./node_modules/gts/tsconfig-google.json",
+  "target": "ES2015",
+  "downlevelIteration": true,
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "build"
+  },
+  "include": [
+    "src/**/*.ts",
+    "test/**/*.ts"
+  ]
+}
