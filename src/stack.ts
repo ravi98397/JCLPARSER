@@ -28,4 +28,12 @@ export class Stack<T>{
     isEmpty(){
         return this.length === 0;
     }
+
+    toString() : string{
+        let output = "";
+        for(let i = 0; i < this.length; i++){
+            output += this.stackContainer[i] + " ";
+        }
+        return output;
+    }
 }

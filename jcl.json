@@ -1,0 +1,123 @@
+{
+  "name": "//PRCAW999",
+  "type": "JOB",
+  "tokens": [],
+  "value": "(0022),'OPERATIONS',CLASS=1,MSGCLASS=H,MSGLEVEL=1,NOTIFY=&SYSUID\n",
+  "args": [],
+  "libs": [],
+  "properties": {},
+  "children": [
+    {
+      "name": "//JOBLIB",
+      "type": "DD",
+      "tokens": [],
+      "value": "DSN=SYS1.SACBCNTL,DISP=SHR        HIGH LEVEL LIBRARY\n//        DD  DSN=SYS1.SACBLIB,DISP=SHR\n//        DD  DSN=SYS2.SACBLIB,DISP=SHR\n//        SET HIGHLVL=PRCA.ILYTICS.Q           HIGH LEVEL QUALIFIER\n//        SET GEN10=+1                         GENERATION NUMBER\n//        SET SYSN='N'                         SYSTEM NAME\n//        SET UNIT=PRODA                       UNIT\n//        SET MYSPACE1=3                       SPACE\n//        SET MYSPACE2=20                      SPACE \n",
+      "args": [],
+      "libs": [],
+      "properties": {},
+      "children": []
+    },
+    {
+      "name": "//JS010",
+      "type": "EXEC",
+      "tokens": [],
+      "value": "PGM=IEFBR14\n",
+      "args": [],
+      "libs": [],
+      "properties": {},
+      "children": [
+        {
+          "name": "//PRSOUT1",
+          "type": "DD",
+          "tokens": [],
+          "value": "DSN=&HIGHLVL..PR1ILDAT.PRSOUT,DISP=(MOD,DELETE,DELETE),SPACE=(CYL,(1,1),RLSE)\n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "//PRS",
+          "type": "DD",
+          "tokens": [],
+          "value": "DSN=&HIGHLVL..PR1ILLOG.PRS,DISP=(MOD,DELETE,DELETE),SPACE=(CYL,(1,1),RLSE)\n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "//PARENGEX",
+      "type": "EXEC",
+      "tokens": [],
+      "value": "PROC1,CYCLE=PRCA.ILYTICS.Q,\n//              SPACE=(CYL,(1,1),RLSE),\n//              SYSN='N',\n//              UNIT=PRODA  \n",
+      "args": [],
+      "libs": [],
+      "properties": {},
+      "children": []
+    },
+    {
+      "name": "//JS020",
+      "type": "EXEC",
+      "tokens": [],
+      "value": "PGM=SORT\n",
+      "args": [],
+      "libs": [],
+      "properties": {},
+      "children": [
+        {
+          "name": "//SYSOUT",
+          "type": "DD",
+          "tokens": [],
+          "value": "SYSOUT=&SYSN\n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "//SORTIN",
+          "type": "DD",
+          "tokens": [],
+          "value": "DSN=PRCA.ILYTICS.Q.PR1ILDAT.PRSOUT(&GEN10),DISP=SHR \n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "//SORTOUT",
+          "type": "DD",
+          "tokens": [],
+          "value": "DSN=PRCA.ILYTICS.Q.PR1ILDAT.PRSOUT(&GEN10),DISP=(NEW,CATLG,DELETE),SPACE=(CYL,(1,1),RLSE)\n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "//SYSPRINT",
+          "type": "DD",
+          "tokens": [],
+          "value": "SYSOUT=*\n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        },
+        {
+          "name": "//SYSIN",
+          "type": "DD",
+          "tokens": [],
+          "value": "*\n  SORT FIELDS=COPY\n/*         \n",
+          "args": [],
+          "libs": [],
+          "properties": {},
+          "children": []
+        }
+      ]
+    }
+  ]
+}
