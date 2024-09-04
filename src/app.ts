@@ -30,7 +30,8 @@ const jclString =
 //SYSPRINT DD SYSOUT=*
 //SYSIN   DD *
   SORT FIELDS=COPY
-/*         
+/*
+//         
 `;
 
 //WIRTING PROC1
